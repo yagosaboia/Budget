@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
-		DAC8EB83226F981800DCC1F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* ViewController.swift */; };
-		DAC8EB86226F981800DCC1F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB84226F981800DCC1F4 /* Main.storyboard */; };
+		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
 		DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */; };
+		DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB92226F98A200DCC1F4 /* Main.storyboard */; };
+		DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */; };
+		DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */; };
+		DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DAC8EB82226F981800DCC1F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DAC8EB85226F981800DCC1F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DAC8EB82226F981800DCC1F4 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAC8EB8A226F981B00DCC1F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAC8EB8C226F981B00DCC1F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAC8EB92226F98A200DCC1F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseController.swift; sourceTree = "<group>"; };
+		DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +61,48 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */,
-				DAC8EB82226F981800DCC1F4 /* ViewController.swift */,
-				DAC8EB84226F981800DCC1F4 /* Main.storyboard */,
-				DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */,
+				DAC8EB94226F98C700DCC1F4 /* StoryBoards */,
+				DAC8EB95226F98D100DCC1F4 /* Controllers */,
+				DAC8EB97226F98F300DCC1F4 /* Cellgroups */,
+				DAC8EB96226F98EA00DCC1F4 /* Models */,
 				DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */,
+				DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */,
 				DAC8EB8C226F981B00DCC1F4 /* Info.plist */,
 			);
 			path = Budget;
+			sourceTree = "<group>";
+		};
+		DAC8EB94226F98C700DCC1F4 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				DAC8EB92226F98A200DCC1F4 /* Main.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		DAC8EB95226F98D100DCC1F4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAC8EB82226F981800DCC1F4 /* MainController.swift */,
+				DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DAC8EB96226F98EA00DCC1F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DAC8EB97226F98F300DCC1F4 /* Cellgroups */ = {
+			isa = PBXGroup;
+			children = (
+				DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */,
+			);
+			path = Cellgroups;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +163,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */,
 				DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */,
 				DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */,
-				DAC8EB86226F981800DCC1F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +176,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAC8EB83226F981800DCC1F4 /* ViewController.swift in Sources */,
+				DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */,
+				DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */,
+				DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */,
 				DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */,
+				DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DAC8EB84226F981800DCC1F4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAC8EB85226F981800DCC1F4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
