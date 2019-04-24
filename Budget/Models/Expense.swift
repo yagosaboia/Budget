@@ -7,29 +7,17 @@
 //
 
 import Foundation
+import HandyJSON
 
-class Expense{
-    var expenseID : String?
-    var value : Float?
+class Expense : HandyJSON{
+    var value : String?
     var description : String?
-    var date: String?
-    var paid : Bool?
+    var date : String?
+    var paid : String?
     
     required init(){
         
     }
     
-//    init(value: Float, description : String, date : NSDate, paid : Bool) {
-//        self.value = value
-//        self.description = description
-//        self.date = date
-//        //        if let desc = description{
-//        //        self.description = desc;
-//        //        }
-//        //        if let date1 = date {
-//        //            self.date = date1;
-//        //        }
-//        self.paid = paid
-//
-//    }
+    
 }
