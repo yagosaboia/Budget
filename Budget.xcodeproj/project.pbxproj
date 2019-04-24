@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C4FE9600AFBE898F97EECA6B /* Pods_Budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E661FF7FE18AEAEB4972E175 /* Pods_Budget.framework */; };
+		DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02526E226FFABE00C68E7B /* LogInController.swift */; };
+		DA02527122700B9100C68E7B /* SignInStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA02527022700B9100C68E7B /* SignInStoryboard.storyboard */; };
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
 		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		D0368C6DEA64C96406B5A10E /* Pods-Budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Budget/Pods-Budget.release.xcconfig"; sourceTree = "<group>"; };
+		DA02526E226FFABE00C68E7B /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
+		DA02527022700B9100C68E7B /* SignInStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInStoryboard.storyboard; sourceTree = "<group>"; };
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAC8EB82226F981800DCC1F4 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB92226F98A200DCC1F4 /* Main.storyboard */,
+				DA02527022700B9100C68E7B /* SignInStoryboard.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 			children = (
 				DAC8EB82226F981800DCC1F4 /* MainController.swift */,
 				DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */,
+				DA02526E226FFABE00C68E7B /* LogInController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -192,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA02527122700B9100C68E7B /* SignInStoryboard.storyboard in Resources */,
 				DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */,
 				DAC8EB9F226F9E8000DCC1F4 /* GoogleService-Info.plist in Resources */,
 				DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */,
@@ -227,12 +234,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Budget/Pods-Budget-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -250,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */,
+				DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */,
 				DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */,
 				DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */,
 				DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */,
