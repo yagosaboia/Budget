@@ -54,17 +54,9 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
     @IBAction func doneBtt(_ sender: Any) {
         
         if amt == 0 {
-            let alert = UIAlertController(title: "Please enter a value to expense", message: nil, preferredStyle: UIAlertController.Style.alert)
-            
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-            
-            present(alert, animated: true, completion: nil)
+            alertSpecs(withText: "Please enter a value to expense")
         }else if(descriptionTxf.text == "" ){
-            let alert = UIAlertController(title: "Please put a description", message: nil, preferredStyle: UIAlertController.Style.alert)
-            
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-            
-            present(alert, animated: true, completion: nil)
+            alertSpecs(withText: "Please put a description")
         }else{
             
             if paidSeg.selectedSegmentIndex == 0 {
@@ -104,11 +96,7 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
             amt = amt * 10 + digit
             
             if amt > 1_000_000_000_00 {
-                let alert = UIAlertController(title: "Please enter a amount less than 1 billion", message: nil, preferredStyle: UIAlertController.Style.alert)
-                
-                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-                
-                present(alert, animated: true, completion: nil)
+                alertSpecs(withText: "Please enter a amount less than 1 billion")
                 
                 valueTxf.text = ""
                 
@@ -137,5 +125,14 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    
+    func alertSpecs(withText text : String){
+        let alert = UIAlertController(title: text, message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
     }
 }

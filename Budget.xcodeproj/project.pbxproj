@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		C4FE9600AFBE898F97EECA6B /* Pods_Budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E661FF7FE18AEAEB4972E175 /* Pods_Budget.framework */; };
 		DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02526E226FFABE00C68E7B /* LogInController.swift */; };
-		DA02527122700B9100C68E7B /* SignInStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA02527022700B9100C68E7B /* SignInStoryboard.storyboard */; };
+		DA02527322700E3800C68E7B /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02527222700E3800C68E7B /* SignUpController.swift */; };
+		DA08F42622701A3C006373A5 /* LogScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA08F42522701A3C006373A5 /* LogScreen.storyboard */; };
+		DA08F4292270B1CE006373A5 /* AlertsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08F4282270B1CE006373A5 /* AlertsManager.swift */; };
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
 		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
@@ -24,7 +26,9 @@
 /* Begin PBXFileReference section */
 		D0368C6DEA64C96406B5A10E /* Pods-Budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Budget/Pods-Budget.release.xcconfig"; sourceTree = "<group>"; };
 		DA02526E226FFABE00C68E7B /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
-		DA02527022700B9100C68E7B /* SignInStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInStoryboard.storyboard; sourceTree = "<group>"; };
+		DA02527222700E3800C68E7B /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		DA08F42522701A3C006373A5 /* LogScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogScreen.storyboard; sourceTree = "<group>"; };
+		DA08F4282270B1CE006373A5 /* AlertsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsManager.swift; sourceTree = "<group>"; };
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAC8EB82226F981800DCC1F4 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DA08F4272270B1AF006373A5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				DA08F4282270B1CE006373A5 /* AlertsManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		DAC8EB74226F981800DCC1F4 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */,
+				DA08F4272270B1AF006373A5 /* Managers */,
 				DAC8EB94226F98C700DCC1F4 /* StoryBoards */,
 				DAC8EB95226F98D100DCC1F4 /* Controllers */,
 				DAC8EB97226F98F300DCC1F4 /* Cellgroups */,
@@ -107,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB92226F98A200DCC1F4 /* Main.storyboard */,
-				DA02527022700B9100C68E7B /* SignInStoryboard.storyboard */,
+				DA08F42522701A3C006373A5 /* LogScreen.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -118,6 +131,7 @@
 				DAC8EB82226F981800DCC1F4 /* MainController.swift */,
 				DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */,
 				DA02526E226FFABE00C68E7B /* LogInController.swift */,
+				DA02527222700E3800C68E7B /* SignUpController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,10 +212,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA02527122700B9100C68E7B /* SignInStoryboard.storyboard in Resources */,
 				DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */,
 				DAC8EB9F226F9E8000DCC1F4 /* GoogleService-Info.plist in Resources */,
 				DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */,
+				DA08F42622701A3C006373A5 /* LogScreen.storyboard in Resources */,
 				DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +274,9 @@
 			files = (
 				DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */,
 				DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */,
+				DA02527322700E3800C68E7B /* SignUpController.swift in Sources */,
 				DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */,
+				DA08F4292270B1CE006373A5 /* AlertsManager.swift in Sources */,
 				DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */,
 				DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */,
 				DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */,
