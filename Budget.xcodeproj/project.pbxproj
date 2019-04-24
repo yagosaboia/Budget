@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4FE9600AFBE898F97EECA6B /* Pods_Budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E661FF7FE18AEAEB4972E175 /* Pods_Budget.framework */; };
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
 		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
@@ -15,9 +16,11 @@
 		DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */; };
 		DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */; };
 		DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */; };
+		DAC8EB9F226F9E8000DCC1F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0368C6DEA64C96406B5A10E /* Pods-Budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Budget/Pods-Budget.release.xcconfig"; sourceTree = "<group>"; };
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAC8EB82226F981800DCC1F4 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -28,6 +31,9 @@
 		DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseController.swift; sourceTree = "<group>"; };
 		DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E661FF7FE18AEAEB4972E175 /* Pods_Budget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0954CF9A1E1255B2E46B6F5 /* Pods-Budget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Budget/Pods-Budget.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FE9600AFBE898F97EECA6B /* Pods_Budget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88490E2BAA1477987B8C7FB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E661FF7FE18AEAEB4972E175 /* Pods_Budget.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A1D62B8B752FD5D3BF64E837 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0954CF9A1E1255B2E46B6F5 /* Pods-Budget.debug.xcconfig */,
+				D0368C6DEA64C96406B5A10E /* Pods-Budget.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DAC8EB74226F981800DCC1F4 = {
 			isa = PBXGroup;
 			children = (
 				DAC8EB7F226F981800DCC1F4 /* Budget */,
 				DAC8EB7E226F981800DCC1F4 /* Products */,
+				A1D62B8B752FD5D3BF64E837 /* Pods */,
+				88490E2BAA1477987B8C7FB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +92,7 @@
 				DAC8EB97226F98F300DCC1F4 /* Cellgroups */,
 				DAC8EB96226F98EA00DCC1F4 /* Models */,
 				DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */,
+				DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */,
 				DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */,
 				DAC8EB8C226F981B00DCC1F4 /* Info.plist */,
 			);
@@ -112,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAC8EB8F226F981B00DCC1F4 /* Build configuration list for PBXNativeTarget "Budget" */;
 			buildPhases = (
+				A0FC5588A87F88877D9FA894 /* [CP] Check Pods Manifest.lock */,
 				DAC8EB79226F981800DCC1F4 /* Sources */,
 				DAC8EB7A226F981800DCC1F4 /* Frameworks */,
 				DAC8EB7B226F981800DCC1F4 /* Resources */,
+				B50F5F641949A08ECB08DEF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -164,12 +193,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */,
+				DAC8EB9F226F9E8000DCC1F4 /* GoogleService-Info.plist in Resources */,
 				DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */,
 				DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0FC5588A87F88877D9FA894 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Budget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B50F5F641949A08ECB08DEF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Budget/Pods-Budget-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Budget/Pods-Budget-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DAC8EB79226F981800DCC1F4 /* Sources */ = {
@@ -316,6 +389,7 @@
 		};
 		DAC8EB90226F981B00DCC1F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0954CF9A1E1255B2E46B6F5 /* Pods-Budget.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -334,6 +408,7 @@
 		};
 		DAC8EB91226F981B00DCC1F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0368C6DEA64C96406B5A10E /* Pods-Budget.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

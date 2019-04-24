@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class ExpenseController: UIViewController, UITextFieldDelegate {
     
@@ -16,15 +17,28 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var descriptionTxf: UITextField!
     
-    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBOutlet weak var dateTxf: UITextField!
     
     @IBOutlet weak var paidSeg: UISegmentedControl!
     
     
     var amt: Int = 0
+    var paid: String = ""
+    private var datePicker : UIDatePicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        
+        datePicker?.addTarget(self, action: #selector(ExpenseController.dateChanged(datePicker:)), for: .valueChanged)
+        dateTxf.inputView = datePicker
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ExpenseController.viewTapped(gestureRecognizer:)))
+        
+        view.addGestureRecognizer(tapGesture)
         
         valueTxf.delegate = self
         valueTxf.attributedPlaceholder = NSAttributedString(string:"placeholder text",
@@ -53,6 +67,18 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
             present(alert, animated: true, completion: nil)
         }else{
             
+            if paidSeg.selectedSegmentIndex == 0 {
+                paid = "not paid"
+            }else{
+                paid = "paid"
+            }
+            
+            var ref: DatabaseReference!
+            
+            ref = Database.database().reference()
+            
+            ref.child("expenses").childByAutoId().setValue(["value" : amt, "description" : descriptionTxf.text!, "paid" : paid])
+            
             
             self.dismiss(animated: true, completion: nil)
         }
@@ -60,7 +86,16 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
         
         
     }
+    @objc func viewTapped(gestureRecognizer : UITapGestureRecognizer){
+        view.endEditing(true)
+    }
     
+    @objc func dateChanged(datePicker : UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateTxf.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

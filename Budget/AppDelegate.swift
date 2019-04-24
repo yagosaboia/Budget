@@ -2,11 +2,12 @@
 //  AppDelegate.swift
 //  Budget
 //
-//  Created by Yuri Saboia Felix Frota on 23/04/19.
+//  Created by Yago Saboia Felix Frota on 23/04/19.
 //  Copyright © 2019 com.yagoapps. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
         return true
     }
 
