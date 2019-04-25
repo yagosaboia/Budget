@@ -15,31 +15,39 @@ class LogInController: UIViewController{
     @IBOutlet weak var emailTxf: UITextField!
     
     @IBOutlet weak var passwordTxf: UITextField!
+    @IBOutlet weak var loginOutlet: UIButton!
+    
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activity.isHidden = true
+        activity.stopAnimating()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func logUserIn(withEmail email : String, password : String){
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            
-            if let error = error {
-                print("failed to sign in user with error: ", error.localizedDescription)
-                return
-            }
-
-            
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
+    
     
     @IBAction func loginBtt(_ sender: Any) {
         guard let email = emailTxf.text else { return }
         guard let password = passwordTxf.text else { return }
         print(password)
+        activity.isHidden = false
+        activity.startAnimating()
+        loginOutlet.isEnabled = false
         
-        logUserIn(withEmail: email, password: password)
+        FirebaseService.shared.logUserIn(withEmail: email, password: password, view: self) { (error) in
+            guard let error = error else{
+                
+                self.dismiss(animated: true, completion: nil)
+                self.activity.isHidden = true
+                self.activity.stopAnimating()
+                self.loginOutlet.isEnabled = true
+                return
+            }
+            AlertsManager.shared.alertSpecs(withText: "Sign up was not successful", view: self)
+            print(error)
+        }
     }
     
     

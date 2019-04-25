@@ -13,13 +13,16 @@
 		DA08F42622701A3C006373A5 /* LogScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA08F42522701A3C006373A5 /* LogScreen.storyboard */; };
 		DA08F4292270B1CE006373A5 /* AlertsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08F4282270B1CE006373A5 /* AlertsManager.swift */; };
 		DA08F42D2270EF8D006373A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08F42C2270EF8D006373A5 /* User.swift */; };
-		DA1B58F522710086009B9925 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1B58F422710086009B9925 /* Expenses.swift */; };
+		DAA906F82271FB63006F3125 /* Revenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906F72271FB63006F3125 /* Revenue.swift */; };
+		DAA906FA2271FBB7006F3125 /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906F92271FBB7006F3125 /* RevenueCell.swift */; };
+		DAA906FD22720C23006F3125 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906FC22720C23006F3125 /* Type.swift */; };
+		DAA9070022721B44006F3125 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906FF22721B44006F3125 /* FirebaseService.swift */; };
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
 		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
 		DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */; };
 		DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB92226F98A200DCC1F4 /* Main.storyboard */; };
-		DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */; };
+		DAC8EB99226F994E00DCC1F4 /* AddBudgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB98226F994E00DCC1F4 /* AddBudgetController.swift */; };
 		DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */; };
 		DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */; };
 		DAC8EB9F226F9E8000DCC1F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */; };
@@ -32,7 +35,10 @@
 		DA08F42522701A3C006373A5 /* LogScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogScreen.storyboard; sourceTree = "<group>"; };
 		DA08F4282270B1CE006373A5 /* AlertsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsManager.swift; sourceTree = "<group>"; };
 		DA08F42C2270EF8D006373A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		DA1B58F422710086009B9925 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
+		DAA906F72271FB63006F3125 /* Revenue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revenue.swift; sourceTree = "<group>"; };
+		DAA906F92271FBB7006F3125 /* RevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
+		DAA906FC22720C23006F3125 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		DAA906FF22721B44006F3125 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAC8EB82226F981800DCC1F4 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -40,7 +46,7 @@
 		DAC8EB8A226F981B00DCC1F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAC8EB8C226F981B00DCC1F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAC8EB92226F98A200DCC1F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseController.swift; sourceTree = "<group>"; };
+		DAC8EB98226F994E00DCC1F4 /* AddBudgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetController.swift; sourceTree = "<group>"; };
 		DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -85,6 +91,22 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		DAA906FB22720C10006F3125 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				DAA906FC22720C23006F3125 /* Type.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		DAA906FE22721AE8006F3125 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DAA906FF22721B44006F3125 /* FirebaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DAC8EB74226F981800DCC1F4 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */,
+				DAA906FB22720C10006F3125 /* Enum */,
+				DAA906FE22721AE8006F3125 /* Services */,
 				DA08F4272270B1AF006373A5 /* Managers */,
 				DAC8EB94226F98C700DCC1F4 /* StoryBoards */,
 				DAC8EB95226F98D100DCC1F4 /* Controllers */,
@@ -133,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB82226F981800DCC1F4 /* MainController.swift */,
-				DAC8EB98226F994E00DCC1F4 /* ExpenseController.swift */,
+				DAC8EB98226F994E00DCC1F4 /* AddBudgetController.swift */,
 				DA02526E226FFABE00C68E7B /* LogInController.swift */,
 				DA02527222700E3800C68E7B /* SignUpController.swift */,
 			);
@@ -144,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */,
-				DA1B58F422710086009B9925 /* Expenses.swift */,
+				DAA906F72271FB63006F3125 /* Revenue.swift */,
 				DA08F42C2270EF8D006373A5 /* User.swift */,
 			);
 			path = Models;
@@ -154,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */,
+				DAA906F92271FBB7006F3125 /* RevenueCell.swift */,
 			);
 			path = Cellgroups;
 			sourceTree = "<group>";
@@ -280,16 +305,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA1B58F522710086009B9925 /* Expenses.swift in Sources */,
 				DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */,
 				DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */,
 				DA02527322700E3800C68E7B /* SignUpController.swift in Sources */,
-				DAC8EB99226F994E00DCC1F4 /* ExpenseController.swift in Sources */,
+				DAC8EB99226F994E00DCC1F4 /* AddBudgetController.swift in Sources */,
+				DAA906FA2271FBB7006F3125 /* RevenueCell.swift in Sources */,
 				DA08F4292270B1CE006373A5 /* AlertsManager.swift in Sources */,
 				DA08F42D2270EF8D006373A5 /* User.swift in Sources */,
+				DAA9070022721B44006F3125 /* FirebaseService.swift in Sources */,
+				DAA906F82271FB63006F3125 /* Revenue.swift in Sources */,
 				DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */,
 				DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */,
 				DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */,
+				DAA906FD22720C23006F3125 /* Type.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

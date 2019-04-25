@@ -9,14 +9,18 @@
 import Foundation
 import UIKit
 
-class AlertsManager : NSObject {
-    func alertSpecs(withText text : String) -> UIAlertController{
+class AlertsManager{
+    static var shared = AlertsManager()
+    private init(){
+        
+    }
+    
+    func alertSpecs(withText text : String, view : UIViewController){
         let alert = UIAlertController(title: text, message: nil, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         
-        
-        return alert
+        view.present(alert, animated: true, completion: nil)
     }
     
     

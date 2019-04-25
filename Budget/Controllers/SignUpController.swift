@@ -17,38 +17,19 @@ class SignUpController: UIViewController {
     
     @IBOutlet weak var passwordTxf: UITextField!
     
+    @IBOutlet weak var doneOutlet: UIBarButtonItem!
+    
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        activity.isHidden = true
+        activity.stopAnimating()
         // Do any additional setup after loading the view.
     }
     
     
-    func createUser(withEmail email : String, password : String){
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            
-            
-            if let error = error {
-                print("failed to sign up user with error: ", error.localizedDescription)
-                return
-            }
-            
-            guard let uid = result?.user.uid else { return }
-            
-            let values = ["email" : email]
-            
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
-                
-                if let error = error {
-                    print("failed to update database values with error: ", error.localizedDescription)
-                    return
-                }
-                
-                print("Sucessfully signed up")
-                
-            })
-        }
-    }
+    
     
     
     
@@ -59,35 +40,28 @@ class SignUpController: UIViewController {
     @IBAction func doneBtt(_ sender: Any) {
         guard let email = emailTxf.text else { return }
         guard let password = passwordTxf.text else { return }
-        print(password)
+        doneOutlet.isEnabled = false
+        activity.isHidden = false
+        activity.startAnimating()
         if(email == ""){
-            alertSpecs(withText: "Please enter a valid email")
+            AlertsManager.shared.alertSpecs(withText: "Please enter a valid email", view: self)
         }
-        else if(password.count <= 5){
-            alertSpecs(withText: "Please enter a password with at least 6 digits")
+        else if(password.count < 6){
+            AlertsManager.shared.alertSpecs(withText: "Please enter a password with at least 6 digits", view: self)
         }else{
         
-        createUser(withEmail: email, password: password)
-
-        self.dismiss(animated: true, completion: nil)
+            FirebaseService.shared.createUser(withEmail: email, password: password) { (error) in
+                guard let error = error else{
+                    self.dismiss(animated: true, completion: nil)
+                    self.doneOutlet.isEnabled = true
+                    self.activity.isHidden = true
+                    self.activity.stopAnimating()
+                    return
+                }
+                AlertsManager.shared.alertSpecs(withText: "Sign up was not successful", view: self)
+                print(error)
+            }
         }
     }
-    
-    func alertSpecs(withText text : String){
-        let alert = UIAlertController(title: text, message: nil, preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
