@@ -6,13 +6,12 @@
 //  Copyright © 2019 com.yagoapps. All rights reserved.
 //
 //Ajeitar o sync e tela de loading
-//Ajeitar o auto layout das celulas
-//fazer funcionar a search bar
+
 import UIKit
 import Firebase
 import FirebaseAuth
 
-class MainController: UIViewController, UISearchBarDelegate{
+class MainController: UIViewController{
     
     
     @IBOutlet weak var value: UILabel! //change to totalAmount
@@ -24,13 +23,14 @@ class MainController: UIViewController, UISearchBarDelegate{
     
     var handle: AuthStateDidChangeListenerHandle?
     var dbHandle : DatabaseHandle?
-    
     var expenses : [Expense] = [] {
         didSet {
             tableView.reloadData()
             loadValue()
         }
     }
+    var searchExpenses = [Expense]()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,15 +86,17 @@ class MainController: UIViewController, UISearchBarDelegate{
     
     //verify if the unwrap is correct and change variable to totalAmount
     func loadValue(){
+
         var total = 0.00
         for expense in expenses{
+            if(expense.paid == "not paid"){
             var trValue = expense.value!
             print(trValue)
             trValue.removeFirst()
             let amt = Double(trValue)
             total+=amt!
+            }
         }
-        
         let totalAmount = ("$"+String(total))
         value.text = totalAmount
     }
@@ -128,16 +130,23 @@ extension MainController : UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(searching == true){
+            return searchExpenses.count
+        }else{
         return expenses.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCells", for: indexPath) as!  ExpenseCell
+        if (searching == true){
+            
+        }else{
         cell.value.text = expenses[indexPath.row].value
         cell.descript.text = expenses[indexPath.row].description
         cell.date.text = expenses[indexPath.row].date
         cell.paid.text = expenses[indexPath.row].paid
-
+        }
         return cell
     }
     
@@ -163,7 +172,7 @@ extension MainController : UITableViewDataSource, UITableViewDelegate {
         self.tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var expense = expenses[indexPath.row]
+        let expense = expenses[indexPath.row]
         performSegue(withIdentifier: "expenseSegue", sender: expense)
     }
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -171,3 +180,14 @@ extension MainController : UITableViewDataSource, UITableViewDelegate {
 //    }
 }
 
+extension MainController : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchExpenses = expenses.filter({$0.description?.prefix(searchText.count).lowercased() == searchText.lowercased()})
+        searching = true
+        if(searchText.count == 0){
+            searching = false
+        }
+        tableView.reloadData()
+    }
+}

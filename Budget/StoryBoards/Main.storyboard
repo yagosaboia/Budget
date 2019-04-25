@@ -77,11 +77,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseCells" rowHeight="66" id="Vgh-li-MyO" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vgh-li-MyO" id="kd5-fm-3EA" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vgh-li-MyO" id="kd5-fm-3EA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Date Created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKA-sg-9bA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Date to expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKA-sg-9bA">
                                                     <rect key="frame" x="15" y="45" width="84.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -99,8 +99,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-qZ-3X1">
-                                                    <rect key="frame" x="282" y="5" width="78" height="37"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-qZ-3X1">
+                                                    <rect key="frame" x="282" y="5" width="85" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="37" id="HBG-A3-iVp"/>
                                                     </constraints>
@@ -111,7 +111,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="HtC-Oe-cmC" firstAttribute="leading" secondItem="kd5-fm-3EA" secondAttribute="leading" constant="14" id="1Mh-z8-68x"/>
-                                                <constraint firstAttribute="trailing" secondItem="rjJ-qZ-3X1" secondAttribute="trailing" constant="15" id="6Wn-yR-AGg"/>
+                                                <constraint firstAttribute="trailing" secondItem="rjJ-qZ-3X1" secondAttribute="trailing" constant="8" id="6Wn-yR-AGg"/>
                                                 <constraint firstItem="rjJ-qZ-3X1" firstAttribute="leading" secondItem="HtC-Oe-cmC" secondAttribute="trailing" constant="180" id="Amu-NX-bTN"/>
                                                 <constraint firstItem="X1o-VR-oTA" firstAttribute="leading" secondItem="yKA-sg-9bA" secondAttribute="trailing" constant="180" id="DLD-wz-bnf"/>
                                                 <constraint firstItem="HtC-Oe-cmC" firstAttribute="top" secondItem="kd5-fm-3EA" secondAttribute="top" constant="10" id="IDK-Us-VUm"/>
@@ -241,7 +241,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick a date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vHs-4l-QQW">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiring date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vHs-4l-QQW">
                                 <rect key="frame" x="16" y="278" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.66659259800000004" green="0.66670930390000005" blue="0.66658520700000001" alpha="0.2129173801" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
