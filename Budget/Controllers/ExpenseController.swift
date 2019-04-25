@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class ExpenseController: UIViewController, UITextFieldDelegate {
     
+    var expense : Expense?
     
     @IBOutlet weak var valueTxf: UITextField!
     
@@ -47,17 +49,34 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if(expense) != nil {
+            valueTxf.text = expense?.value
+            descriptionTxf.text = expense?.description
+            dateTxf.text = expense?.date
+            if(expense?.paid == "paid"){
+                paidSeg.selectedSegmentIndex = 1
+            }
+        }
+    }
+    
     @IBAction func returnBtt(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneBtt(_ sender: Any) {
         
-        if amt == 0 {
-            alertSpecs(withText: "Please enter a value to expense")
-        }else if(descriptionTxf.text == "" ){
-            alertSpecs(withText: "Please put a description")
-        }else{
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            
+            if valueTxf.text == "" || valueTxf.text == "0.00" {
+                alertSpecs(withText: "Please enter a value to expense")
+            }else if(descriptionTxf.text == "" ){
+                alertSpecs(withText: "Please put a description")
+            }else if(dateTxf.text == ""){
+                alertSpecs(withText: "Please put a date")
+            }else{
             
             if paidSeg.selectedSegmentIndex == 0 {
                 paid = "not paid"
@@ -66,18 +85,23 @@ class ExpenseController: UIViewController, UITextFieldDelegate {
             }
             
             var ref: DatabaseReference!
-            
             ref = Database.database().reference()
+
+            if(expense != nil){
+                ref.child("expenses").child((expense?.ID)!).updateChildValues(["value" : valueTxf.text!, "description" : descriptionTxf.text!, "date" : dateTxf.text!, "paid" : paid])
+            }else{
+                let key = ref.childByAutoId().key
+                ref.child("expenses").child(key!).setValue(["userID" : uid,"value" : valueTxf.text!, "description" : descriptionTxf.text!, "date" : dateTxf.text!, "paid" : paid])
+                
+                ref.child("users").child(uid).child("expenses").child(key!).setValue(true)
             
-            ref.child("expenses").childByAutoId().setValue(["value" : amt, "description" : descriptionTxf.text!, "paid" : paid])
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
             
-            
-            self.dismiss(animated: true, completion: nil)
         }
-        
-        
-        
     }
+    
     @objc func viewTapped(gestureRecognizer : UITapGestureRecognizer){
         view.endEditing(true)
     }

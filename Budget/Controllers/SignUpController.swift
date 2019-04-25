@@ -63,7 +63,7 @@ class SignUpController: UIViewController {
         if(email == ""){
             alertSpecs(withText: "Please enter a valid email")
         }
-        else if(password.count <= 6){
+        else if(password.count <= 5){
             alertSpecs(withText: "Please enter a password with at least 6 digits")
         }else{
         

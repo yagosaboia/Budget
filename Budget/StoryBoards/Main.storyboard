@@ -74,7 +74,7 @@
                                 <rect key="frame" x="0.0" y="239" width="375" height="428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseCell" rowHeight="66" id="Vgh-li-MyO" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseCells" rowHeight="66" id="Vgh-li-MyO" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vgh-li-MyO" id="kd5-fm-3EA" customClass="ExpenseCell" customModule="Budget" customModuleProvider="target">
@@ -99,7 +99,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Valor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-qZ-3X1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjJ-qZ-3X1">
                                                     <rect key="frame" x="282" y="5" width="78" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="37" id="HBG-A3-iVp"/>
@@ -125,7 +125,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="date" destination="yKA-sg-9bA" id="xz0-wr-6pO"/>
-                                            <outlet property="desc" destination="HtC-Oe-cmC" id="bxf-vE-mTm"/>
+                                            <outlet property="descript" destination="HtC-Oe-cmC" id="3XI-KK-f7k"/>
                                             <outlet property="paid" destination="X1o-VR-oTA" id="FNH-oP-1OZ"/>
                                             <outlet property="value" destination="rjJ-qZ-3X1" id="whO-I3-BjT"/>
                                         </connections>
@@ -168,7 +168,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mxW-PA-eGd">
                             <connections>
-                                <segue destination="14U-Iu-BR2" kind="presentation" id="ONL-ic-sbm"/>
+                                <segue destination="14U-Iu-BR2" kind="presentation" identifier="expenseSegue" id="ONL-ic-sbm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

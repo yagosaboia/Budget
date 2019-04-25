@@ -10,6 +10,8 @@ import Foundation
 import HandyJSON
 
 class Expense : HandyJSON{
+    var ID : String?
+    var userID : String?
     var value : String?
     var description : String?
     var date : String?

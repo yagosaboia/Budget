@@ -13,7 +13,8 @@ class ExpenseCell : UITableViewCell{
     
     
     
-    @IBOutlet weak var desc: UILabel!
+    
+    @IBOutlet weak var descript: UILabel!
     
     @IBOutlet weak var value: UILabel!
     

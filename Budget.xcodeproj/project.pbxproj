@@ -13,6 +13,7 @@
 		DA08F42622701A3C006373A5 /* LogScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA08F42522701A3C006373A5 /* LogScreen.storyboard */; };
 		DA08F4292270B1CE006373A5 /* AlertsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08F4282270B1CE006373A5 /* AlertsManager.swift */; };
 		DA08F42D2270EF8D006373A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08F42C2270EF8D006373A5 /* User.swift */; };
+		DA1B58F522710086009B9925 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1B58F422710086009B9925 /* Expenses.swift */; };
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
 		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		DA08F42522701A3C006373A5 /* LogScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogScreen.storyboard; sourceTree = "<group>"; };
 		DA08F4282270B1CE006373A5 /* AlertsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsManager.swift; sourceTree = "<group>"; };
 		DA08F42C2270EF8D006373A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DA1B58F422710086009B9925 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAC8EB82226F981800DCC1F4 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */,
+				DA1B58F422710086009B9925 /* Expenses.swift */,
 				DA08F42C2270EF8D006373A5 /* User.swift */,
 			);
 			path = Models;
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1B58F522710086009B9925 /* Expenses.swift in Sources */,
 				DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */,
 				DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */,
 				DA02527322700E3800C68E7B /* SignUpController.swift in Sources */,

@@ -28,11 +28,7 @@ class LogInController: UIViewController{
                 print("failed to sign in user with error: ", error.localizedDescription)
                 return
             }
-            guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-            guard let controller = navController.viewControllers[0] as? MainController else { return }
-            print("sucessfully logged user in...")
-            
-            controller.loadUserData()
+
             
             self.dismiss(animated: true, completion: nil)
         }
