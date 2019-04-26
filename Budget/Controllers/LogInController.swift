@@ -11,7 +11,7 @@ import Firebase
 
 class LogInController: UIViewController{
     
-    
+    var handle: AuthStateDidChangeListenerHandle?
     @IBOutlet weak var emailTxf: UITextField!
     
     @IBOutlet weak var passwordTxf: UITextField!
@@ -25,7 +25,21 @@ class LogInController: UIViewController{
         activity.stopAnimating()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if Auth.auth().currentUser != nil {
+//                // User is signed in.
+//                // ...
+//                self.performSegue(withIdentifier: "newUser", sender: self)
+//            } else {
+//                // No user is signed in.
+//                // ...
+//                
+//            }
+//            
+//        }
+    }
     
     
     @IBAction func loginBtt(_ sender: Any) {
@@ -35,7 +49,13 @@ class LogInController: UIViewController{
         activity.isHidden = false
         activity.startAnimating()
         loginOutlet.isEnabled = false
-        
+        if(email == ""){
+            AlertsManager.shared.alertSpecs(withText: "Please enter a valid email", view: self)
+            self.dismiss(animated: true, completion: nil)
+            self.loginOutlet.isEnabled = true
+            self.activity.isHidden = true
+            self.activity.stopAnimating()
+        }else{
         FirebaseService.shared.logUserIn(withEmail: email, password: password, view: self) { (error) in
             guard let error = error else{
                 
@@ -45,8 +65,9 @@ class LogInController: UIViewController{
                 self.loginOutlet.isEnabled = true
                 return
             }
-            AlertsManager.shared.alertSpecs(withText: "Sign up was not successful", view: self)
+            AlertsManager.shared.alertSpecs(withText: "Username or password incorrect", view: self)
             print(error)
+        }
         }
     }
     

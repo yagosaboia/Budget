@@ -81,14 +81,14 @@ class AddBudgetController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneBtt(_ sender: Any) {
-        switch type{
-        case .expense?:
+        if type == .expense{
             expenseType()
-        case .revenue?:
+        }else if(type == .edit && expense != nil){
+            expenseType()
+        }else{
             revenueType()
-        default:
-            break
         }
+        
     }
     
     func expenseType(){
@@ -151,8 +151,8 @@ class AddBudgetController: UIViewController, UITextFieldDelegate {
                 
                 guard let value = valueTxf.text, let description = descriptionTxf.text, let date = dateTxf.text else {return}
                 
-                if(expense != nil){
-                    guard let id = expense?.ID else{ return }
+                if(revenue != nil){
+                    guard let id = revenue?.ID else{ return }
                     FirebaseService.shared.updateRevenue(id, uid, value, description, date) { error in
                         guard let error = error else {
                             self.dismiss(animated: true, completion: nil)

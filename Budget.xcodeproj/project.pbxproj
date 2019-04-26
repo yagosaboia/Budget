@@ -136,7 +136,6 @@
 				DAC8EB95226F98D100DCC1F4 /* Controllers */,
 				DAC8EB97226F98F300DCC1F4 /* Cellgroups */,
 				DAC8EB96226F98EA00DCC1F4 /* Models */,
-				DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */,
 				DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */,
 				DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */,
 				DAC8EB8C226F981B00DCC1F4 /* Info.plist */,
@@ -149,6 +148,7 @@
 			children = (
 				DAC8EB92226F98A200DCC1F4 /* Main.storyboard */,
 				DA08F42522701A3C006373A5 /* LogScreen.storyboard */,
+				DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";

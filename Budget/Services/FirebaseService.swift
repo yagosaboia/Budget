@@ -13,6 +13,48 @@ class FirebaseService{
     static var shared = FirebaseService()
     private init() {}
     
+    func logUserIn(withEmail email : String, password : String,view: UIViewController, completion: @escaping (_ error: Error?) -> ()){
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            
+            if let error = error {
+                print("failed to sign in user with error: ", error.localizedDescription)
+                completion(error)
+            }
+            
+            completion(nil)
+        }
+    }
+    
+    
+    func createUser(withEmail email : String, password : String, completion: @escaping (_ error: Error?) -> ()){
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            
+            
+            if let error = error {
+                print("failed to sign up user with error: ", error.localizedDescription)
+                completion(error)
+            }
+            
+            guard let uid = result?.user.uid else { return }
+            
+            let values = ["email" : email]
+            
+            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
+                
+                if let error = error {
+                    print("failed to update database values with error: ", error.localizedDescription)
+                    completion(error)
+                }
+                
+                print("Sucessfully signed up")
+                completion(nil)
+                
+            })
+        }
+    }
+    
+    
+    
     func loadExpenses(_ uid: String, completion: @escaping (_ expenses: [Expense]) -> ()) {
         var expenses: [Expense] = []
         
@@ -162,48 +204,6 @@ class FirebaseService{
         ref = Database.database().reference()
         ref.child("revenues").child(id).updateChildValues(["value" : value, "description" : description, "date" : date]) { error, _ in
             completion(error)
-        }
-    }
-    
-    func logUserIn(withEmail email : String, password : String,view: UIViewController, completion: @escaping (_ error: Error?) -> ()){
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            
-            if let error = error {
-                print("failed to sign in user with error: ", error.localizedDescription)
-                AlertsManager.shared.alertSpecs(withText: "Username or password incorrect", view: view)
-                return
-            }
-            
-            completion(nil)
-        }
-    }
-    
-    
-    func createUser(withEmail email : String, password : String, completion: @escaping (_ error: Error?) -> ()){
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            
-            
-            if let error = error {
-                print("failed to sign up user with error: ", error.localizedDescription)
-                completion(error)
-                return
-            }
-            
-            guard let uid = result?.user.uid else { return }
-            
-            let values = ["email" : email]
-            
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
-                
-                if let error = error {
-                    print("failed to update database values with error: ", error.localizedDescription)
-                    return
-                }
-                
-                print("Sucessfully signed up")
-                completion(nil)
-                
-            })
         }
     }
     

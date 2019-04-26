@@ -5,7 +5,6 @@
 //  Created by Yago Saboia Felix Frota on 23/04/19.
 //  Copyright © 2019 com.yagoapps. All rights reserved.
 //
-//Ajeitar o sync e tela de loading
 
 import UIKit
 import Firebase
@@ -14,9 +13,13 @@ import FirebaseAuth
 class MainController: UIViewController{
     
     
-    @IBOutlet weak var value: UILabel! //change to totalAmount
+    
+    @IBOutlet weak var accountBalance: UILabel!
     
     
+    @IBOutlet weak var accountExpenses: UILabel!
+    
+    @IBOutlet weak var accountNotPaid: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     
     
@@ -27,13 +30,13 @@ class MainController: UIViewController{
     var expenses : [Expense] = [] {
         didSet {
             tableView.reloadData()
-            loadValue()
+            loadAll()
         }
     }
     var revenues: [Revenue] = [] {
         didSet {
             tableView.reloadData()
-            loadValue()
+            loadAll()
         }
     }
     var searchExpenses = [Expense]()
@@ -53,6 +56,7 @@ class MainController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        self.loadData()
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if Auth.auth().currentUser != nil {
                 // User is signed in.
@@ -61,20 +65,19 @@ class MainController: UIViewController{
             } else {
                 // No user is signed in.
                 // ...
-                
-                
+
+
                 self.performSegue(withIdentifier: "newUser", sender: self)
             }
-            
         }
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         Auth.auth().removeStateDidChangeListener(handle!)
     }
     
-    //fix the transition from maincontroller to login controller when user is nil
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -126,21 +129,40 @@ class MainController: UIViewController{
         }
     }
     
-    //verify if the unwrap is correct and change variable to totalAmount
-    func loadValue(){
+    func loadAll(){
+        var total: Double = 0.00
+        for revenue in revenues{
+                var trValue = revenue.value!
+                trValue.removeFirst()
+                let amt = Double(trValue)
+                total+=amt!
+            }
+        var totalAmount = ("$"+String(total))
+        accountBalance.text = totalAmount
         
-        var total = 0.00
+        total = 0.00
+        for expense in expenses{
+                var trValue = expense.value!
+                trValue.removeFirst()
+                let amt = Double(trValue)
+                total+=amt!
+            }
+        totalAmount = ("$"+String(total))
+        accountExpenses.text = totalAmount
+    
+    
+    
+        total = 0.00
         for expense in expenses{
             if(expense.paid == "not paid"){
                 var trValue = expense.value!
-                print(trValue)
                 trValue.removeFirst()
                 let amt = Double(trValue)
                 total+=amt!
             }
         }
-        let totalAmount = ("$"+String(total))
-        value.text = totalAmount
+        totalAmount = ("$"+String(total))
+        accountNotPaid.text = totalAmount
     }
     
     func loadData(){

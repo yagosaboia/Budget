@@ -45,9 +45,17 @@ class SignUpController: UIViewController {
         activity.startAnimating()
         if(email == ""){
             AlertsManager.shared.alertSpecs(withText: "Please enter a valid email", view: self)
+            self.dismiss(animated: true, completion: nil)
+            self.doneOutlet.isEnabled = true
+            self.activity.isHidden = true
+            self.activity.stopAnimating()
         }
         else if(password.count < 6){
             AlertsManager.shared.alertSpecs(withText: "Please enter a password with at least 6 digits", view: self)
+            self.dismiss(animated: true, completion: nil)
+            self.doneOutlet.isEnabled = true
+            self.activity.isHidden = true
+            self.activity.stopAnimating()
         }else{
         
             FirebaseService.shared.createUser(withEmail: email, password: password) { (error) in
@@ -58,7 +66,11 @@ class SignUpController: UIViewController {
                     self.activity.stopAnimating()
                     return
                 }
-                AlertsManager.shared.alertSpecs(withText: "Sign up was not successful", view: self)
+                AlertsManager.shared.alertSpecs(withText: "Username or password incorrect", view: self)
+                self.dismiss(animated: true, completion: nil)
+                self.doneOutlet.isEnabled = true
+                self.activity.isHidden = true
+                self.activity.stopAnimating()
                 print(error)
             }
         }
