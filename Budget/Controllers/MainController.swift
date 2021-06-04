@@ -25,8 +25,8 @@ class MainController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
     
-    var handle: AuthStateDidChangeListenerHandle?
-    var dbHandle : DatabaseHandle?
+    //var handle: AuthStateDidChangeListenerHandle?
+    //var dbHandle : DatabaseHandle?
     var expenses : [Expense] = [] {
         didSet {
             tableView.reloadData()
@@ -56,26 +56,12 @@ class MainController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.loadData()
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            if Auth.auth().currentUser != nil {
-                // User is signed in.
-                // ...
-                self.loadData()
-            } else {
-                // No user is signed in.
-                // ...
-
-
-                self.performSegue(withIdentifier: "newUser", sender: self)
-            }
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        Auth.auth().removeStateDidChangeListener(handle!)
+        //Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     
@@ -88,10 +74,10 @@ class MainController: UIViewController{
         
         
         let addExpenseAction = UIAlertAction(title: "Add Expense", style: .default) { _ in
-            self.performSegue(withIdentifier: "addSegue", sender: Type.expense)
+            self.performSegue(withIdentifier: "AddEditBudget", sender: TransactionType.expense)
         }
         let addRevenueAction = UIAlertAction(title: "Add Revenue", style: .default) { _ in
-            self.performSegue(withIdentifier: "addSegue", sender: Type.revenue)
+            self.performSegue(withIdentifier: "AddEditBudget", sender: TransactionType.revenue)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -107,6 +93,13 @@ class MainController: UIViewController{
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            
+            let storyboard = UIStoryboard(name: "LogScreen", bundle: nil)
+            
+            let viewController = storyboard.instantiateViewController(withIdentifier: "logInController") as! LogInController
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true, completion: nil)
+            
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -114,19 +107,47 @@ class MainController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let expense = sender as? Expense {
-            guard let editExpense = segue.destination as? AddBudgetController else {return}
-            editExpense.expense = expense
-            editExpense.type = .edit
-        }else if let revenue = sender as? Revenue{
-            guard let editRevenue = segue.destination as? AddBudgetController else { return }
-            editRevenue.revenue = revenue
-            editRevenue.type = .edit
+        guard let addEdit = segue.destination as? BudgetController else {return}
+        switch sender{
+        case is Expense:
+            if (sender != nil){
+                addEdit.expense = sender as? Expense
+                addEdit.transAction = .edit
+                addEdit.transType = .expense
+            }else{
+                addEdit.transAction = .add
+                addEdit.transType = .expense
+            }
+        case is Revenue:
+            if (sender != nil){
+                addEdit.revenue = sender as? Revenue
+                addEdit.transAction = .edit
+                addEdit.transType = .revenue
+            }else{
+                addEdit.transAction = .edit
+                addEdit.transType = .revenue
+            }
+        default:
+            addEdit.transAction = .add
+            addEdit.transType = .expense
         }
-        else {
-            guard let addExpense = segue.destination as? AddBudgetController, let type = sender as? Type else {return}
-            addExpense.type = type
-        }
+        
+//        if let expense = sender as? Expense {
+//            guard let editExpense = segue.destination as? BudgetController else {return}
+//            editExpense.expense = expense
+//            editExpense.type = .edit
+//            editExpense.transaction = .expense
+//        }else if let revenue = sender as? Revenue{
+//            guard let editRevenue = segue.destination as? BudgetController else { return }
+//            editRevenue.revenue = revenue
+//            editRevenue.type = .edit
+//            editRevenue.transaction = .revenue
+//        }
+//        else {
+//            guard let addExpense = segue.destination as? BudgetController, let type = sender as? Type else {return}
+//            addExpense.type = type
+//            addExpense.transaction = .expense
+//        }
     }
     
     func loadAll(){
@@ -239,7 +260,7 @@ extension MainController : UITableViewDataSource, UITableViewDelegate {
                         tableView.reloadData()
                         return
                     }
-                    AlertsManager.shared.alertSpecs(withText: "Failed to delete, try later", view: self)
+                    AlertsManager.shared.simpleAlert(withText: "Failed to delete, try later", toView: self)
                     print(error)
                 }
             }else{
@@ -249,7 +270,7 @@ extension MainController : UITableViewDataSource, UITableViewDelegate {
                         tableView.reloadData()
                         return
                     }
-                    AlertsManager.shared.alertSpecs(withText: "Failed to delete, try later", view: self)
+                    AlertsManager.shared.simpleAlert(withText: "Failed to delete, try later", toView: self)
                     print(error)
             }
             }
@@ -257,10 +278,10 @@ extension MainController : UITableViewDataSource, UITableViewDelegate {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if(indexPath.section == 0){
             let expense = expenses[indexPath.row]
-            performSegue(withIdentifier: "addSegue", sender: expense)
+            performSegue(withIdentifier: "AddEditBudget", sender: expense)
             }else{
                 let revenue = revenues[indexPath.row]
-                performSegue(withIdentifier: "addSegue", sender: revenue)
+                performSegue(withIdentifier: "AddEditBudget", sender: revenue)
             }
         }
     

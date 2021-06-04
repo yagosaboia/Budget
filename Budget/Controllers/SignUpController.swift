@@ -25,6 +25,11 @@ class SignUpController: UIViewController {
         super.viewDidLoad()
         activity.isHidden = true
         activity.stopAnimating()
+        
+        emailTxf.disableAutoFill()
+        
+        passwordTxf.placeholder = "At least 6 characters long"
+        passwordTxf.disableAutoFill()
         // Do any additional setup after loading the view.
     }
     
@@ -40,40 +45,61 @@ class SignUpController: UIViewController {
     @IBAction func doneBtt(_ sender: Any) {
         guard let email = emailTxf.text else { return }
         guard let password = passwordTxf.text else { return }
-        doneOutlet.isEnabled = false
-        activity.isHidden = false
-        activity.startAnimating()
+        startActivity()
         if(email == ""){
-            AlertsManager.shared.alertSpecs(withText: "Please enter a valid email", view: self)
-            self.dismiss(animated: true, completion: nil)
-            self.doneOutlet.isEnabled = true
-            self.activity.isHidden = true
-            self.activity.stopAnimating()
+            AlertsManager.shared.simpleAlert(withText: "Please enter a valid email", toView: self)
+            stopActivity()
         }
         else if(password.count < 6){
-            AlertsManager.shared.alertSpecs(withText: "Please enter a password with at least 6 digits", view: self)
-            self.dismiss(animated: true, completion: nil)
-            self.doneOutlet.isEnabled = true
-            self.activity.isHidden = true
-            self.activity.stopAnimating()
+            AlertsManager.shared.simpleAlert(withText: "Please enter a password with at least 6 digits", toView: self)
+            stopActivity()
         }else{
-        
+            
             FirebaseService.shared.createUser(withEmail: email, password: password) { (error) in
-                guard let error = error else{
+                if let error = error{
+                    if let errCode = AuthErrorCode(rawValue: error._code) {
+                        
+                        switch errCode {
+                        case .invalidEmail:
+                            AlertsManager.shared.simpleAlert(withText: "Invalid email", toView: self)
+                            print("invalid email")
+                        case .emailAlreadyInUse:
+                            AlertsManager.shared.simpleAlert(withText: "Email already in use", toView: self)
+                            print("in use")
+                        default:
+                            AlertsManager.shared.simpleAlert(withText: "Something went wrong, try again later", toView: self)
+                            print("Create User Error: \(error)")
+                        }
+                        self.stopActivity()
+                        return
+                    }
+                    
+                }else{
                     self.dismiss(animated: true, completion: nil)
-                    self.doneOutlet.isEnabled = true
-                    self.activity.isHidden = true
-                    self.activity.stopAnimating()
-                    return
+                    self.stopActivity()
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "mainController") as! MainController
+                    viewController.modalPresentationStyle = .overFullScreen
+                    let navigationController = UINavigationController.init(rootViewController: viewController)
+                    UIApplication.shared.windows.first?.rootViewController = navigationController
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
                 }
-                AlertsManager.shared.alertSpecs(withText: "Username or password incorrect", view: self)
-                self.dismiss(animated: true, completion: nil)
-                self.doneOutlet.isEnabled = true
-                self.activity.isHidden = true
-                self.activity.stopAnimating()
-                print(error)
             }
         }
     }
-
+    
+    
+    func startActivity(){
+        doneOutlet.isEnabled = false
+        activity.isHidden = false
+        activity.startAnimating()
+    }
+    func stopActivity(){
+        self.doneOutlet.isEnabled = true
+        self.activity.isHidden = true
+        self.activity.stopAnimating()
+    }
+    
 }

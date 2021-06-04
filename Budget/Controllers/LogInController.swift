@@ -11,7 +11,6 @@ import Firebase
 
 class LogInController: UIViewController{
     
-    var handle: AuthStateDidChangeListenerHandle?
     @IBOutlet weak var emailTxf: UITextField!
     
     @IBOutlet weak var passwordTxf: UITextField!
@@ -27,18 +26,6 @@ class LogInController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         
-//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if Auth.auth().currentUser != nil {
-//                // User is signed in.
-//                // ...
-//                self.performSegue(withIdentifier: "newUser", sender: self)
-//            } else {
-//                // No user is signed in.
-//                // ...
-//                
-//            }
-//            
-//        }
     }
     
     
@@ -46,33 +33,52 @@ class LogInController: UIViewController{
         guard let email = emailTxf.text else { return }
         guard let password = passwordTxf.text else { return }
         print(password)
-        activity.isHidden = false
-        activity.startAnimating()
-        loginOutlet.isEnabled = false
-        if(email == ""){
-            AlertsManager.shared.alertSpecs(withText: "Please enter a valid email", view: self)
-            self.dismiss(animated: true, completion: nil)
-            self.loginOutlet.isEnabled = true
-            self.activity.isHidden = true
-            self.activity.stopAnimating()
-        }else{
+        startActivity()
+        
         FirebaseService.shared.logUserIn(withEmail: email, password: password, view: self) { (error) in
-            guard let error = error else{
+            if let error = error{
+                if let errCode = AuthErrorCode(rawValue: error._code) {
+                    
+                    switch errCode {
+                    case .invalidEmail:
+                        AlertsManager.shared.simpleAlert(withText: "Invalid email", toView: self)
+                        print("invalid email")
+                    case .emailAlreadyInUse:
+                        AlertsManager.shared.simpleAlert(withText: "Email already in use", toView: self)
+                        print("in use")
+                    default:
+                        AlertsManager.shared.simpleAlert(withText: "Something went wrong, try again later", toView: self)
+                        print("Create User Error: \(error)")
+                    }
+                    self.stopActivity()
+                    return
+                }
                 
-                self.dismiss(animated: true, completion: nil)
-                self.activity.isHidden = true
-                self.activity.stopAnimating()
-                self.loginOutlet.isEnabled = true
-                return
+            }else{
+                self.stopActivity()
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let viewController = storyboard.instantiateViewController(withIdentifier: "mainController") as! MainController
+                viewController.modalPresentationStyle = .fullScreen
+                let navigationController = UINavigationController.init(rootViewController: viewController)
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
             }
-            AlertsManager.shared.alertSpecs(withText: "Username or password incorrect", view: self)
-            print(error)
-        }
         }
     }
     
     
-    
+    func startActivity(){
+        loginOutlet.isEnabled = false
+        activity.isHidden = false
+        activity.startAnimating()
+    }
+    func stopActivity(){
+        self.loginOutlet.isEnabled = true
+        self.activity.isHidden = true
+        self.activity.stopAnimating()
+    }
 }
 
 

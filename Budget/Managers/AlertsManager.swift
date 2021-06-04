@@ -15,10 +15,18 @@ class AlertsManager{
         
     }
     
-    func alertSpecs(withText text : String, view : UIViewController){
+    func simpleAlert(withText text : String, toView view : UIViewController){
         let alert = UIAlertController(title: text, message: nil, preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: AlertMessages.ok.description, style: UIAlertAction.Style.default, handler: nil))
+        
+        view.present(alert, animated: true, completion: nil)
+    }
+    
+    func customAlert(withText text : String,andMessage message: AlertMessages,toView view : UIViewController){
+        let alert = UIAlertController(title: text, message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: message.description, style: UIAlertAction.Style.default, handler: nil))
         
         view.present(alert, animated: true, completion: nil)
     }
