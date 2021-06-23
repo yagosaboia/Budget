@@ -16,6 +16,9 @@ class RevenueCell : UITableViewCell{
     @IBOutlet weak var date: UILabel!
     
     @IBOutlet weak var value: UILabel!
+    
+    @IBOutlet weak var received: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

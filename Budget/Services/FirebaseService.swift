@@ -11,10 +11,19 @@ import FirebaseDatabase
 import FirebaseAuth
 class FirebaseService{
     static var shared = FirebaseService()
-    private init() {}
+    var databaseRef : DatabaseReference
+    var user : FirebaseAuth.User?
+    
+    private init() {
+        databaseRef = Database.database().reference()
+        user = Auth.auth().currentUser
+    }
     
     func logUserIn(withEmail email : String, password : String,view: UIViewController, completion: @escaping (_ error: Error?) -> ()){
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            
+            guard let newUser = result?.user else { return }
+            self.user = newUser
             
             if let error = error {
                 print("failed to sign in user with error: ", error.localizedDescription)
@@ -35,11 +44,12 @@ class FirebaseService{
                 completion(error)
             }
             
-            guard let uid = result?.user.uid else { return }
+            guard let newUser = result?.user else { return }
+            self.user = newUser
             
             let values = ["email" : email]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
+            self.databaseRef.child("users").child(newUser.uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
                 
                 if let error = error {
                     print("failed to update database values with error: ", error.localizedDescription)
@@ -55,157 +65,164 @@ class FirebaseService{
     
     
     
-    func loadExpenses(_ uid: String, completion: @escaping (_ expenses: [Expense]) -> ()) {
+    func loadExpenses(completion: @escaping (_ expenses: [Expense]) -> ()) {
         var expenses: [Expense] = []
         
-        let expensesRef = Database.database().reference(withPath: "expenses" )
-        expensesRef.observeSingleEvent(of: .value) { (snapshot) in
+        guard let uid = user?.uid else {
+            print("Failed to retrive user key in loadExpenses")
+            return
+        }
+        
+        databaseRef.child("users").child(uid).child("expenses").observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
+                
                 let snap = child as! DataSnapshot
-                let expenseDict = snap.value as! [String : Any]
-                let userID = expenseDict["userID"] as! String
-                if uid == userID {
-                    let expense = Expense.deserialize(from: expenseDict)
-                    expense?.ID = snap.key
-                    expenses.append(expense!)
+                
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .secondsSince1970
+                
+                guard let data = snap.data else {
+                    print("Failed to read a expense")
+                    return
                 }
+                print("\(String(decoding: data, as: UTF8.self))")
+                do{
+                    var expense = try decoder.decode(Expense.self, from: data)
+                    expense.ID = snap.key
+                    expenses.append(expense)
+                }catch{
+                    print(error)
+                }
+                
             }
+            
             DispatchQueue.main.async {
                 completion(expenses)
             }
         }
     }
     
-    func loadRevenues(_ uid: String, completion: @escaping (_ revenues: [Revenue]) -> ()){
+    func loadRevenues(completion: @escaping (_ revenues: [Revenue]) -> ()){
         var revenues: [Revenue] = []
         
-        let revenuesRef = Database.database().reference(withPath: "revenues" )
+        guard let uid = user?.uid else {
+            print("Failed to retrive user key in loadRevenues")
+            return
+        }
+        
+        let userRef = databaseRef.child("users").child(uid)
+        
+        let revenuesRef = userRef.child("revenues")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        
         revenuesRef.observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
+                
                 let snap = child as! DataSnapshot
-                let revenueDict = snap.value as! [String : Any]
-                let userID = revenueDict["userID"] as! String
-                if uid == userID {
-                    let revenue = Revenue.deserialize(from: revenueDict)
-                    revenue?.ID = snap.key
-                    revenues.append(revenue!)
+                guard let data = snap.data, var revenue = try? decoder.decode(Revenue.self, from: data) else {
+                    print("Failed to read a revenue")
+                    return
                 }
+                
+                revenue.ID = snap.key
+                revenues.append(revenue)
             }
+            
             DispatchQueue.main.async {
                 completion(revenues)
             }
         }
     }
     
-    func writeExpense(_ uid: String,_ value: String,_ description: String,_ date: String,_ paid : String, completion: @escaping (_ error: Error?) -> ()) {
+    func writeExpense(value: Double,description: String, date: Date, paid : Bool, completion: @escaping (_ error: Error?) -> ()) {
         
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        let key = ref.childByAutoId().key
-        let group = DispatchGroup()
-        var errorMessage: Error? = nil
-        group.enter()
-        ref.child("expenses").child(key!).setValue(["userID" : uid,"value" : value, "description" : description, "date" : date, "paid" : paid]) { error, _ in
-            errorMessage = error
-            group.leave()
+        //remake this guard let to check for the 2 conditions
+        guard let uid = user?.uid, let newKey = databaseRef.childByAutoId().key else {
+            print("Failed to retrive user key or generate a key in writeExpenses")
+            return
         }
-        group.enter()
-        ref.child("users").child(uid).child("expenses").child(key!).setValue(true) { error, _ in
-            errorMessage = error
-            group.leave()
+        let timestamp = date.timeIntervalSince1970
+        
+        databaseRef.child("users").child(uid).child("expenses").child(newKey).setValue(["value" : value, "description" : description, "date" : timestamp, "paid" : paid]) { error, _ in
+            guard let errorMessage = error?.localizedDescription else { return }
+            print(errorMessage)
+            
         }
-
-        group.notify(queue: .main) {
-            completion(errorMessage)
+        
+    }
+    func updateExpense(withID expenseID: String, value: Double, description: String, date: Date, paid : Bool, completion: @escaping (_ error: Error?) -> ()) {
+        
+        guard let uid = user?.uid else {
+            print("Failed to retrive user key in updateExpenses")
+            return
+        }
+        
+        let timestamp = date.timeIntervalSince1970
+        
+        databaseRef.child("users").child(uid).child("expenses").child(expenseID).updateChildValues(["value" : value, "description" : description, "date" : timestamp, "paid" : paid]) {error, _ in
+            guard let errorMessage = error?.localizedDescription else { return }
+            print(errorMessage)
+        }
+        
+    }
+    
+    func removeExpense(withID expenseID: String, completion: @escaping (_ error: Error?) -> ()){
+        
+        guard let uid = user?.uid else {
+            print("Failed to retrive user key in removeExpenses")
+            return
+        }
+        
+        databaseRef.child("users").child(uid).child("expenses").child(expenseID).removeValue { error, _ in
+            guard let errorMessage = error?.localizedDescription else { return }
+            print(errorMessage)
+        }
+        
+    }
+    
+    func writeRevenue(value: Double, description: String, date: Date, received: Bool, completion: @escaping (_ error: Error?) -> ()) {
+        
+        guard let uid = user?.uid, let newKey = databaseRef.childByAutoId().key else {
+            print("Failed to retrive user key in writeRevenue")
+            return
+        }
+        
+        let timestamp = date.timeIntervalSince1970
+        
+        databaseRef.child("users").child(uid).child("revenues").child(newKey).setValue(["value" : value, "description" : description, "date" : timestamp, "received" : received]) { error, _ in
+            guard let errorMessage = error?.localizedDescription else { return }
+            print(errorMessage)
+            
         }
     }
-    func updateExpense(_ id: String,_ uid: String,_ value: String,_ description: String,_ date: String,_ paid : String, completion: @escaping (_ error: Error?) -> ()) {
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("expenses").child(id).updateChildValues(["value" : value, "description" : description, "date" : date, "paid" : paid]) {error, _ in
-            completion(error)
+    func updateRevenue(withID revenueID: String, value: Double, description: String, date: Date, received: Bool, completion: @escaping (_ error: Error?) -> ()) {
+        
+        guard let uid = user?.uid else {
+            print("Failed to retrive user key in updateRevenue")
+            return
+        }
+        
+        let timestamp = date.timeIntervalSince1970
+        
+        databaseRef.child("users").child(uid).child("revenues").child(revenueID).updateChildValues(["value" : value, "description" : description, "date" : timestamp, "received" : received]) {error, _ in
+            guard let errorMessage = error?.localizedDescription else { return }
+            print(errorMessage)
         }
     }
     
-    func removeExpense( uid: String,expenseID: String, completion: @escaping (_ error: Error?) -> ()){
+    func removeRevenue(withID revenueID: String, completion: @escaping (_ error: Error?) -> ()){
         
-        let group = DispatchGroup()
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        
-        var errorMessage: Error? = nil
-        group.enter()
-        
-//        let expenseRef = Database.database().reference(withPath: "expenses").child(expenseID)
-//        expenseRef.removeValue { error, _ in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                group.leave()
-//            }
-//        }
-        ref.child("expenses").child(expenseID).removeValue() { error, _ in
-            errorMessage = error
-            group.leave()
+        guard let uid = user?.uid else {
+            print("Failed to retrive user key in removeRevenue")
+            return
         }
-        group.enter()
-        ref.child("users").child(uid).child("expenses").child(expenseID).removeValue() { error, _ in
-            errorMessage = error
-            group.leave()
-        }
-        group.notify(queue: .main) {
-            completion(errorMessage)
+        
+        databaseRef.child("users").child(uid).child("revenues").child(revenueID).removeValue { error, _ in
+            guard let errorMessage = error?.localizedDescription else { return }
+            print(errorMessage)
         }
     }
-    func removeRevenue(uid: String, revenueID: String, completion: @escaping (_ error: Error?) -> ()){
-        
-        let group = DispatchGroup()
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        var errorMessage: Error? = nil
-        group.enter()
-        
-        ref.child("revenues").child(revenueID).removeValue() { error, _ in
-            errorMessage = error
-            group.leave()
-        }
-        group.enter()
-        ref.child("users").child(uid).child("revenues").child(revenueID).removeValue() { error, _ in
-            errorMessage = error
-            group.leave()
-        }
-        group.notify(queue: .main) {
-            completion(errorMessage)
-        }
-    }
-    func writeRevenue(_ uid: String,_ value: String,_ description: String,_ date: String, completion: @escaping (_ error: Error?) -> ()) {
-        
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        let key = ref.childByAutoId().key
-        let group = DispatchGroup()
-        var errorMessage: Error? = nil
-        group.enter()
-        ref.child("revenues").child(key!).setValue(["userID" : uid,"value" : value, "description" : description, "date" : date,]) { error, _ in
-            errorMessage = error
-            group.leave()
-        }
-        group.enter()
-        ref.child("users").child(uid).child("revenues").child(key!).setValue(true) { error, _ in
-            errorMessage = error
-            group.leave()
-        }
-        
-        group.notify(queue: .main) {
-            completion(errorMessage)
-        }
-    }
-    func updateRevenue(_ id: String,_ uid: String,_ value: String,_ description: String,_ date: String,  completion: @escaping (_ error: Error?) -> ()) {
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("revenues").child(id).updateChildValues(["value" : value, "description" : description, "date" : date]) { error, _ in
-            completion(error)
-        }
-    }
-    
     
 }

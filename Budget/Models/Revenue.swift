@@ -7,19 +7,21 @@
 //
 
 import Foundation
-import HandyJSON
 
-class Revenue : HandyJSON{
+
+struct Revenue : Codable{
     var ID: String?
-    var userID: String?
-    var value: String?
+    var value: Double?
     var description: String?
-    var date: String?
-
+    var date: Date?
+    var received: Bool?
     
-    required init(){
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        value = try container.decode(Double.self, forKey: .value)
+        description = try container.decode(String.self, forKey: .description)
+        date = try container.decode(Date.self, forKey: .date)
+        received = try container.decode(Bool.self, forKey: .received)
     }
-    
-    
 }

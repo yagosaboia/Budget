@@ -98,7 +98,6 @@ PODS:
   - GoogleUtilities/UserDefaults (7.4.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
-  - HandyJSON (4.2.1)
   - leveldb-library (1.22.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -111,7 +110,6 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
-  - HandyJSON (~> 4.2.0)
 
 SPEC REPOS:
   trunk:
@@ -126,7 +124,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
-    - HandyJSON
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -143,11 +140,10 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 37fe8bc2ec883744c7ce98d16081f0c02b6bd61e
+PODFILE CHECKSUM: 594fc104e0e3a09b3cd00b70b671f00e65701fbb
 
 COCOAPODS: 1.10.1

@@ -8,7 +8,6 @@ target 'Budget' do
   # Pods for Budget
   pod 'Firebase'
   pod 'Firebase/Auth'
-  pod 'Firebase/Database'  
-  pod 'HandyJSON', '~> 4.2.0'
+  pod 'Firebase/Database' 
 
 end

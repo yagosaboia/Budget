@@ -3,10 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0770940B267A871F005718F4 /* BudgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770940A267A871F005718F4 /* BudgetController.swift */; };
+		0770940F267A873A005718F4 /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770940C267A873A005718F4 /* TransactionType.swift */; };
+		07709410267A873A005718F4 /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770940D267A873A005718F4 /* AlertMessages.swift */; };
+		07709411267A873A005718F4 /* TransactionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770940E267A873A005718F4 /* TransactionAction.swift */; };
+		07709414267D6673005718F4 /* FirebaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07709413267D6673005718F4 /* FirebaseExtension.swift */; };
+		0770941626812CB5005718F4 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770941526812CB5005718F4 /* UITextFieldExtension.swift */; };
+		0773AD102683BEC100B41EFF /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0773AD0F2683BEC100B41EFF /* CurrencyTextField.swift */; };
+		0773AD142683C1B900B41EFF /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0773AD132683C1B900B41EFF /* Currency.swift */; };
 		C4FE9600AFBE898F97EECA6B /* Pods_Budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E661FF7FE18AEAEB4972E175 /* Pods_Budget.framework */; };
 		DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02526E226FFABE00C68E7B /* LogInController.swift */; };
 		DA02527322700E3800C68E7B /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02527222700E3800C68E7B /* SignUpController.swift */; };
@@ -15,20 +23,26 @@
 		DA08F42D2270EF8D006373A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08F42C2270EF8D006373A5 /* User.swift */; };
 		DAA906F82271FB63006F3125 /* Revenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906F72271FB63006F3125 /* Revenue.swift */; };
 		DAA906FA2271FBB7006F3125 /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906F92271FBB7006F3125 /* RevenueCell.swift */; };
-		DAA906FD22720C23006F3125 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906FC22720C23006F3125 /* Type.swift */; };
 		DAA9070022721B44006F3125 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA906FF22721B44006F3125 /* FirebaseService.swift */; };
 		DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */; };
 		DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB82226F981800DCC1F4 /* MainController.swift */; };
 		DAC8EB88226F981B00DCC1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB87226F981B00DCC1F4 /* Assets.xcassets */; };
 		DAC8EB8B226F981B00DCC1F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB89226F981B00DCC1F4 /* LaunchScreen.storyboard */; };
 		DAC8EB93226F98A200DCC1F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB92226F98A200DCC1F4 /* Main.storyboard */; };
-		DAC8EB99226F994E00DCC1F4 /* AddBudgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB98226F994E00DCC1F4 /* AddBudgetController.swift */; };
 		DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */; };
 		DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */; };
 		DAC8EB9F226F9E8000DCC1F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0770940A267A871F005718F4 /* BudgetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetController.swift; sourceTree = "<group>"; };
+		0770940C267A873A005718F4 /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
+		0770940D267A873A005718F4 /* AlertMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
+		0770940E267A873A005718F4 /* TransactionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionAction.swift; sourceTree = "<group>"; };
+		07709413267D6673005718F4 /* FirebaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExtension.swift; sourceTree = "<group>"; };
+		0770941526812CB5005718F4 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		0773AD0F2683BEC100B41EFF /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
+		0773AD132683C1B900B41EFF /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		D0368C6DEA64C96406B5A10E /* Pods-Budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Budget/Pods-Budget.release.xcconfig"; sourceTree = "<group>"; };
 		DA02526E226FFABE00C68E7B /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		DA02527222700E3800C68E7B /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -37,7 +51,6 @@
 		DA08F42C2270EF8D006373A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAA906F72271FB63006F3125 /* Revenue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revenue.swift; sourceTree = "<group>"; };
 		DAA906F92271FBB7006F3125 /* RevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
-		DAA906FC22720C23006F3125 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		DAA906FF22721B44006F3125 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		DAC8EB7D226F981800DCC1F4 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +59,6 @@
 		DAC8EB8A226F981B00DCC1F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAC8EB8C226F981B00DCC1F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAC8EB92226F98A200DCC1F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		DAC8EB98226F994E00DCC1F4 /* AddBudgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetController.swift; sourceTree = "<group>"; };
 		DAC8EB9A226F998C00DCC1F4 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		DAC8EB9C226F9AC900DCC1F4 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		DAC8EB9E226F9E8000DCC1F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -66,6 +78,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07709412267D6655005718F4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				07709413267D6673005718F4 /* FirebaseExtension.swift */,
+				0770941526812CB5005718F4 /* UITextFieldExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0773AD0C2683BD3000B41EFF /* SupportClasses */ = {
+			isa = PBXGroup;
+			children = (
+				0773AD0F2683BEC100B41EFF /* CurrencyTextField.swift */,
+				0773AD132683C1B900B41EFF /* Currency.swift */,
+			);
+			path = SupportClasses;
+			sourceTree = "<group>";
+		};
 		88490E2BAA1477987B8C7FB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +124,9 @@
 		DAA906FB22720C10006F3125 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				DAA906FC22720C23006F3125 /* Type.swift */,
+				0770940D267A873A005718F4 /* AlertMessages.swift */,
+				0770940E267A873A005718F4 /* TransactionAction.swift */,
+				0770940C267A873A005718F4 /* TransactionType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -130,6 +162,8 @@
 			children = (
 				DAC8EB80226F981800DCC1F4 /* AppDelegate.swift */,
 				DAA906FB22720C10006F3125 /* Enum */,
+				07709412267D6655005718F4 /* Extensions */,
+				0773AD0C2683BD3000B41EFF /* SupportClasses */,
 				DAA906FE22721AE8006F3125 /* Services */,
 				DA08F4272270B1AF006373A5 /* Managers */,
 				DAC8EB94226F98C700DCC1F4 /* StoryBoards */,
@@ -157,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC8EB82226F981800DCC1F4 /* MainController.swift */,
-				DAC8EB98226F994E00DCC1F4 /* AddBudgetController.swift */,
+				0770940A267A871F005718F4 /* BudgetController.swift */,
 				DA02526E226FFABE00C68E7B /* LogInController.swift */,
 				DA02527222700E3800C68E7B /* SignUpController.swift */,
 			);
@@ -296,19 +330,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07709414267D6673005718F4 /* FirebaseExtension.swift in Sources */,
 				DAC8EB9B226F998C00DCC1F4 /* ExpenseCell.swift in Sources */,
 				DA02526F226FFABE00C68E7B /* LogInController.swift in Sources */,
 				DA02527322700E3800C68E7B /* SignUpController.swift in Sources */,
-				DAC8EB99226F994E00DCC1F4 /* AddBudgetController.swift in Sources */,
+				0770940B267A871F005718F4 /* BudgetController.swift in Sources */,
+				0770941626812CB5005718F4 /* UITextFieldExtension.swift in Sources */,
+				0773AD102683BEC100B41EFF /* CurrencyTextField.swift in Sources */,
+				07709410267A873A005718F4 /* AlertMessages.swift in Sources */,
 				DAA906FA2271FBB7006F3125 /* RevenueCell.swift in Sources */,
+				07709411267A873A005718F4 /* TransactionAction.swift in Sources */,
+				0773AD142683C1B900B41EFF /* Currency.swift in Sources */,
 				DA08F4292270B1CE006373A5 /* AlertsManager.swift in Sources */,
+				0770940F267A873A005718F4 /* TransactionType.swift in Sources */,
 				DA08F42D2270EF8D006373A5 /* User.swift in Sources */,
 				DAA9070022721B44006F3125 /* FirebaseService.swift in Sources */,
 				DAA906F82271FB63006F3125 /* Revenue.swift in Sources */,
 				DAC8EB83226F981800DCC1F4 /* MainController.swift in Sources */,
 				DAC8EB81226F981800DCC1F4 /* AppDelegate.swift in Sources */,
 				DAC8EB9D226F9AC900DCC1F4 /* Expense.swift in Sources */,
-				DAA906FD22720C23006F3125 /* Type.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
